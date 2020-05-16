@@ -3,8 +3,8 @@ import { IAdDao } from '@daos/Ads/AdDao';
 import { IAd } from '@entities/Ad';
 
 interface IAdService {
-  loadAd: () => IClientAd;
-  adClicked: (id: string) => IAd;
+  loadAd: () => Promise<IClientAd>;
+  adClicked: (id: string) => Promise<IAd>;
 }
 
 class AdService implements IAdService {
@@ -13,15 +13,15 @@ class AdService implements IAdService {
     this.adDao = adDao;
   }
 
-  loadAd() {
-    const ad = this.adDao.getRandomAd();
+  async loadAd() {
+    const ad = await this.adDao.getRandomAd();
 
     const redirectUrl = `/api/ads/callback/${ad.id}`;
     return new ClientAd(ad.imgUrl, redirectUrl);
   }
 
-  adClicked(id: string) {
-    return this.adDao.getById(id);
+  async adClicked(id: string) {
+    return await this.adDao.getById(id);
   }
 }
 
