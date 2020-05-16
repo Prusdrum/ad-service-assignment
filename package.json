@@ -5,7 +5,8 @@
     "build": "node ./util/build.js",
     "lint": "tslint --project \"tsconfig.json\"",
     "start": "node -r module-alias/register ./dist",
-    "start:dev": "nodemon --config nodemon.json"
+    "start:dev": "nodemon --config nodemon.json",
+    "db:migrate": "sequelize-cli db:migrate"
   },
   "_moduleAliases": {
     "@daos": "dist/daos",
@@ -24,6 +25,8 @@
     "http-status-codes": "^1.4.0",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.9",
     "winston": "^3.2.1"
   },
   "devDependencies": {
@@ -36,12 +39,14 @@
     "@types/jsonfile": "^6.0.0",
     "@types/morgan": "^1.9.0",
     "@types/node": "^14.0.1",
+    "@types/sequelize": "^4.28.9",
     "@types/supertest": "^2.0.9",
     "find": "^0.3.0",
     "fs-extra": "^9.0.0",
     "jasmine": "^3.5.0",
     "jsonfile": "^6.0.1",
     "nodemon": "^2.0.4",
+    "sequelize-cli": "^5.5.1",
     "supertest": "^4.0.2",
     "ts-node": "^8.10.1",
     "tsconfig-paths": "^3.9.0",
