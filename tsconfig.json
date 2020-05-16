@@ -30,7 +30,8 @@
       ]
     },
     "types": [
-      "node"
+      "node",
+      "jest"
     ],
     "typeRoots": [
       "node_modules/@types"
@@ -41,6 +42,7 @@
     "spec/**/*.ts"
   ],
   "exclude": [
-    "src/public/"
+    "src/public/",
+    "spec/"
   ]
 }
