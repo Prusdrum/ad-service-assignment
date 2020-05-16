@@ -7,7 +7,10 @@ export interface IAdDao {
 
 class AdDao implements IAdDao {
   getRandomAd() {
-    return new Ad(Math.floor((Math.random() * 1000)).toString(), '', '');
+    return new Ad(
+      Math.floor((Math.random() * 1000)).toString(), 
+      'http://www.fillmurray.com/200/250', ''
+    );
   }
 
   getById(id: string) {
