@@ -1,11 +1,10 @@
 import { Request, Response, Router } from 'express';
 import AdDao from '@daos/Ads/AdDao';
 import AdService from '@service/AdService';
-import sequelize from '@service/sequelize/index';
 import logger from '@shared/Logger';
 
 const router = Router();
-const adDao = new AdDao(sequelize);
+const adDao = new AdDao();
 const adService = new AdService(adDao);
 
 router.get('/ads', async (req: Request, res: Response) => {
