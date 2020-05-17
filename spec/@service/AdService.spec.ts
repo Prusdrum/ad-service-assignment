@@ -1,7 +1,7 @@
-import AdService from '../../src/service/AdService';
+import AdService from '../../src/service/AdService/AdService';
 import { IAdDao } from '../../src/daos/Ads/AdDao';
 import { IAdActionDao } from '../../src/daos/Ads/ActionDao';
-import ClientAd from '../../src/service/model/ClientAd';
+import ClientAd from '../../src/service/AdService/ClientAd';
 import AdEntity from '../../src/entities/Ad';
 
 describe('ad service', () => {
