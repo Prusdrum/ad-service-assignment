@@ -1,4 +1,4 @@
-import ClientAd, { IClientAd } from './model/ClientAd';
+import ClientAd, { IClientAd } from './ClientAd';
 import { IAdDao } from '@daos/Ads/AdDao';
 import { IAd } from '@entities/Ad';
 import { IAdActionDao } from '@daos/Ads/ActionDao';
