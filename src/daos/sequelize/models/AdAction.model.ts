@@ -1,8 +1,8 @@
 import { Sequelize, DataTypes, Model, BuildOptions } from 'sequelize';
 
 export interface IAdActionModel extends Model {
-  id: number;
-  adId: number;
+  id: string;
+  adId: string;
   actionType: string;
   createdAt: Date;
 }
@@ -14,7 +14,13 @@ type IAdActionModelStatic = typeof Model & {
 
 export default (sequelize: Sequelize): IAdActionModelStatic => {
   return <IAdActionModelStatic>sequelize.define('AdAction', {
-    adId: DataTypes.INTEGER,
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+    },
+    adId: DataTypes.UUID,
     actionType: DataTypes.STRING,
     createdAt: DataTypes.DATE,
   }, {})

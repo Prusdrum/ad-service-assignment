@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model, BuildOptions } from 'sequelize';
 
 export interface IAdModel extends Model {
-  id: number;
+  id: string;
   imgUrl: string;
   targetUrl: string;
 }
@@ -13,6 +13,12 @@ type IAdModelStatic = typeof Model & {
 
 export default (sequelize: Sequelize): IAdModelStatic => {
   return <IAdModelStatic>sequelize.define('Ad', {
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+    },
     imgUrl: DataTypes.STRING,
     targetUrl: DataTypes.STRING
   }, {})

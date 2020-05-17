@@ -17,7 +17,7 @@ class AdActionDao implements IAdActionDao {
   async addClickAction(adId: string) {
     await AdActionModel.create({
       actionType: AdActionType.click,
-      adId: parseInt(adId, 10),
+      adId,
       createdAt: new Date(),
     } as IAdActionModel);
   }
@@ -25,7 +25,7 @@ class AdActionDao implements IAdActionDao {
   async addLoadAction(adId: string) {
     await AdActionModel.create({
       actionType: AdActionType.load,
-      adId: parseInt(adId, 10),
+      adId,
       createdAt: new Date(),
     } as IAdActionModel);
   }

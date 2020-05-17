@@ -24,7 +24,7 @@ class AdDao implements IAdDao {
 
     const ad = records[0];
     return new Ad(
-      ad.id.toString(), 
+      ad.id, 
       ad.imgUrl,
       ad.targetUrl,
     );
