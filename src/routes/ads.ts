@@ -2,10 +2,12 @@ import { Request, Response, Router } from 'express';
 import AdDao from '@daos/Ads/AdDao';
 import AdService from '@service/AdService';
 import logger from '@shared/Logger';
+import AdActionDao from '@daos/Ads/ActionDao';
 
 const router = Router();
 const adDao = new AdDao();
-const adService = new AdService(adDao);
+const adActionsDao = new AdActionDao();
+const adService = new AdService(adDao, adActionsDao);
 
 router.get('/ads', async (req: Request, res: Response) => {
   const ad = await adService.loadAd();

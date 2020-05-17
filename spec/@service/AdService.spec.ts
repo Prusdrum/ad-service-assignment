@@ -1,5 +1,6 @@
 import AdService from '../../src/service/AdService';
 import { IAdDao } from '../../src/daos/Ads/AdDao';
+import { IAdActionDao } from '../../src/daos/Ads/ActionDao';
 import ClientAd from '../../src/service/model/ClientAd';
 import AdEntity from '../../src/entities/Ad';
 
@@ -9,9 +10,13 @@ describe('ad service', () => {
     getById: jest.fn(),
     getRandomAd: jest.fn(),
   }
+  const adActionDao: IAdActionDao = {
+    addClickAction: jest.fn(),
+    addLoadAction: jest.fn(),
+  }
 
   beforeEach(() => {
-    adService = new AdService(adDao);
+    adService = new AdService(adDao, adActionDao);
   });
 
   afterEach(() => {
@@ -33,5 +38,21 @@ describe('ad service', () => {
     it('should generate redirect url', () => {
       expect(loadedAd.redirectUrl).toEqual('/api/ads/callback/350');
     });
+
+    it('should add load action', () => {
+      expect(adActionDao.addLoadAction).toHaveBeenCalledWith('350');
+    });
+  });
+
+  describe('when click ad is called', () => {
+    beforeEach(async () => {
+      const ad: AdEntity = new AdEntity('350', 'http://image.url', 'http://company.com');
+      (adDao.getById as jest.Mock).mockImplementationOnce(() => Promise.resolve(ad));
+      await adService.adClicked('350');
+    });
+
+    it('should add click action', () => {
+      expect(adActionDao.addClickAction).toHaveBeenCalledWith('350');
+    })
   });
 });

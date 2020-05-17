@@ -8,7 +8,8 @@
     "start:dev": "nodemon --config nodemon.json",
     "test": "jest",
     "test:watch": "jest --watch",
-    "db:migrate": "sequelize-cli db:migrate"
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:migrate:undo": "sequelize-cli db:migrate:undo"
   },
   "_moduleAliases": {
     "@daos": "dist/daos",
