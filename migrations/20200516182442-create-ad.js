@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      img_url: {
+      imgUrl: {
         type: Sequelize.STRING
       },
-      target_url: {
+      targetUrl: {
         type: Sequelize.STRING
       },
       createdAt: {

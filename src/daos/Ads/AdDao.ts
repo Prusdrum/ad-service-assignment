@@ -14,7 +14,7 @@ class AdDao implements IAdDao {
 
   async getRandomAd() {
     const records: IAdModel[] = await sequelize.query(
-      `SELECT id, img_url, target_url from Ads ORDER BY RAND() LIMIT 1`, {
+      `SELECT id, imgUrl, targetUrl from Ads ORDER BY RAND() LIMIT 1`, {
       type: QueryTypes.SELECT,
     });
 
@@ -25,8 +25,8 @@ class AdDao implements IAdDao {
     const ad = records[0];
     return new Ad(
       ad.id.toString(), 
-      ad.img_url,
-      ad.target_url,
+      ad.imgUrl,
+      ad.targetUrl,
     );
   }
 
@@ -34,7 +34,7 @@ class AdDao implements IAdDao {
     const ad = await AdModel.findByPk(id);
     
     if (ad) {
-      return new Ad(id, ad.img_url, ad.target_url);
+      return new Ad(id, ad.imgUrl, ad.targetUrl);
     } else {
       throw new Error('Not found');
     }

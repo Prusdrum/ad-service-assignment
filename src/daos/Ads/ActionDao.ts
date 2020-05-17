@@ -1,15 +1,33 @@
+import { QueryTypes } from 'sequelize';
+import sequelize, { AdActionModel, IAdActionModel } from '@daos/sequelize';
+
+type IAdActionType = 'load' | 'click';
+
+const AdActionType: { [key in IAdActionType]: key } = {
+  click: 'click',
+  load: 'load',
+};
+
 export interface IAdActionDao {
   addLoadAction: (adId: string) => Promise<void>;
   addClickAction: (adId: string) => Promise<void>;
 }
 
 class AdActionDao implements IAdActionDao {
-  addClickAction(adId: string) {
-    return Promise.resolve();
+  async addClickAction(adId: string) {
+    await AdActionModel.create({
+      actionType: AdActionType.click,
+      adId: parseInt(adId, 10),
+      createdAt: new Date(),
+    } as IAdActionModel);
   }
 
-  addLoadAction(adId: string) {
-    return Promise.resolve();
+  async addLoadAction(adId: string) {
+    await AdActionModel.create({
+      actionType: AdActionType.load,
+      adId: parseInt(adId, 10),
+      createdAt: new Date(),
+    } as IAdActionModel);
   }
 }
 

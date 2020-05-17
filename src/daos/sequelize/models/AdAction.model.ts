@@ -2,9 +2,9 @@ import { Sequelize, DataTypes, Model, BuildOptions } from 'sequelize';
 
 export interface IAdActionModel extends Model {
   id: number;
-  ad_id: number;
-  action_type: string;
-  timestamp: number;
+  adId: number;
+  actionType: string;
+  createdAt: Date;
 }
 
 // Need to declare the static model so `findOne` etc. use correct types.
@@ -14,9 +14,9 @@ type IAdActionModelStatic = typeof Model & {
 
 export default (sequelize: Sequelize): IAdActionModelStatic => {
   return <IAdActionModelStatic>sequelize.define('AdAction', {
-    ad_id: DataTypes.INTEGER,
-    action_type: DataTypes.STRING,
-    timestamp: DataTypes.INTEGER,
+    adId: DataTypes.INTEGER,
+    actionType: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
   }, {})
 }
 

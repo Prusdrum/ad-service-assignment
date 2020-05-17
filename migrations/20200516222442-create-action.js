@@ -8,14 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      ad_id: {
+      adId: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      action_type: {
-        type: Sequelize.STRING,
-      },
-      timestamp: {
+      actionType: {
         type: Sequelize.STRING,
       },
       createdAt: {
