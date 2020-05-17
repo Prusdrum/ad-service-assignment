@@ -1,9 +1,9 @@
 import { QueryTypes } from 'sequelize';
 import sequelize, { AdActionModel, IAdActionModel } from '@daos/sequelize';
 
-type IAdActionType = 'load' | 'click';
+export type IAdActionType = 'load' | 'click';
 
-const AdActionType: { [key in IAdActionType]: key } = {
+export const AdActionType: { [key in IAdActionType]: key } = {
   click: 'click',
   load: 'load',
 };

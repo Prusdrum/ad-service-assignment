@@ -5,12 +5,14 @@ import logger from '@shared/Logger';
 import AdActionDao from '@daos/Ads/ActionDao';
 import sequelize from '@daos/sequelize';
 import MetricsService from '@service/MetricsService/MetricsService';
+import MetricsDao from '@daos/Metrics/MetricsDao';
 
 const router = Router();
 const adDao = new AdDao();
 const adActionsDao = new AdActionDao();
 const adService = new AdService(adDao, adActionsDao);
-const metricsService = new MetricsService(sequelize);
+const metricsDao = new MetricsDao(sequelize);
+const metricsService = new MetricsService(metricsDao);
 
 router.get('/ads', async (req: Request, res: Response) => {
   const ad = await adService.loadAd();
@@ -28,7 +30,6 @@ type IAdsCallbackRouteParam = {
 router.get('/ads/callback/:id', async (req: Request<IAdsCallbackRouteParam>, res: Response) => {
   const ad = await adService.adClicked(req.params.id);
 
-  logger.debug(`ad ${ad.id} clicked`);
   res.redirect(ad.targetUrl);
 });
 
