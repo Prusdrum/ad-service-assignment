@@ -22,15 +22,17 @@ describe('ads route', () => {
     createdId = created.id;
     agent = supertest(app);
   });
-  
-  it('should call ads service', (done) => {
-    agent.get('/api/ads')
+
+  describe('given only one ad is in db', () => {
+    it('should return the redirect url with its id', (done) => {
+      agent.get('/api/ads')
       .expect(200, (err, res) => {
         expect(res.body).toEqual({
           img: 'https://placeholder.com',
           url: `/api/ads/callback/${createdId}`
         });
         done();
-      })
+      });
+    });
   });
 });
