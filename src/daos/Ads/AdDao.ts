@@ -1,5 +1,5 @@
 import Ad, { IAd } from '@entities/Ad';
-import { QueryTypes } from 'sequelize';
+import { QueryTypes, Sequelize } from 'sequelize';
 import sequelize, { AdModel, IAdModel } from '@daos/sequelize';
 
 export interface IAdDao {
@@ -13,10 +13,11 @@ class AdDao implements IAdDao {
   }
 
   async getRandomAd() {
-    const records: IAdModel[] = await sequelize.query(
-      `SELECT id, imgUrl, targetUrl from Ads ORDER BY RAND() LIMIT 1`, {
+    const records: IAdModel[] = await AdModel.findAll({
+      limit: 1,
+      order: sequelize.random(),
       type: QueryTypes.SELECT,
-    });
+    })
 
     if (records.length === 0) {
       throw new Error('Not found');

@@ -14,5 +14,12 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: "mysql",
     operatorsAliases: false
+  },
+  testing: {
+    username: "root",
+    password: null,
+    database: "ad_service",
+    dialect: 'sqlite',
+    storage: ':memory:'
   }
 }
