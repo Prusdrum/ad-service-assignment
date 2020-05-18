@@ -5,7 +5,6 @@
 - express - handling requests
 - MySQL - to store data
 - Docker & docker-compose to create MySQL locally
-- jest - testing
 
 ## Solution
 
@@ -65,3 +64,11 @@ Example response:
 `npm run db:migrate`
 - start an app
 `npm run start:dev`
+
+## Build
+Set DB env variables: `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`.
+
+Run build: 
+`npm run build`
+Start the app
+`npm run start`

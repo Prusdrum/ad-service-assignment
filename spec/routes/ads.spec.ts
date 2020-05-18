@@ -34,5 +34,12 @@ describe('ads route', () => {
         done();
       });
     });
+
+    it('should redirect to target URL when callback hit', (done) => {
+      agent.get(`/api/ads/callback/${createdId}`)
+        .expect(302)
+        .expect('Location', 'https://cloudinary.com')
+        .end(done);
+    });
   });
 });
